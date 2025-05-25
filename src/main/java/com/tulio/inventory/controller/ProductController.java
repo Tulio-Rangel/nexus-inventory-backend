@@ -48,4 +48,10 @@ public class ProductController {
         List<ProductResponseDTO> products = productService.searchProducts(entryDate, userId, productName);
         return ResponseEntity.ok(products);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
+        ProductResponseDTO product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
+    }
 }

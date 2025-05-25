@@ -127,6 +127,12 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public ProductResponseDTO getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorConstants.PRODUCTO_NO_ENCONTRADO_ID + id));
+        return convertToResponseDto(product);
+    }
+
     // Validaciones comunes para creación y actualización de productos
     private void productValidator(String productName, Integer quantity, LocalDate entryDate) {
         if (productName == null || productName.trim().isEmpty()) {
