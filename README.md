@@ -40,6 +40,11 @@ Este proyecto es una API RESTful desarrollada con Spring Boot para la gestión d
     ./mvnw clean package
     ```
     (En Windows, usa `mvnw.cmd clean package`)
+    
+    Este comando también ejecutará todas las pruebas unitarias. Si solo quieres compilar sin ejecutar las pruebas, puedes usar:
+    ```bash
+    ./mvnw clean package -DskipTests
+    ```
 
 4.  **Ejecutar la aplicación:**
     Once construida, puedes ejecutar el archivo JAR generado:
@@ -136,6 +141,45 @@ Actualiza un producto existente.
 Elimina un producto.
 *   **Path Variable:** `id` (long) - ID del producto a eliminar.
 *   **Query Parameter Requerido:** `requestingUserId` (long) - ID del usuario que solicita la eliminación.
-*   **Restricciones:** Solo el usuario que originalmente registró el producto (`registeredByUserId`) puede eliminarlo. El valor de `requestingUserId` se compara con el `registeredByUserId` del producto.
-*   **Ejemplo de URL:** `DELETE /api/products/5?requestingUserId=1`
+        *   **Restricciones:** Solo el usuario que originalmente registró el producto (`registeredByUserId`) puede eliminarlo. El valor de `requestingUserId` se compara con el `registeredByUserId` del producto.
+        *   **Ejemplo de URL:** `DELETE /api/products/5?requestingUserId=1`
+
+## Pruebas Unitarias
+
+El proyecto cuenta con un conjunto completo de pruebas unitarias y de integración que garantizan la calidad y robustez del código.
+
+### Tipos de Pruebas Implementadas
+
+1. **Pruebas de Servicios**
+   * `UserServiceTest`: Verifica todas las operaciones CRUD y validaciones del servicio de usuarios.
+   * `ProductServiceTest`: Verifica todas las operaciones CRUD, búsquedas y validaciones del servicio de productos.
+
+2. **Pruebas de Controladores**
+   * `UserControllerTest`: Verifica los endpoints REST relacionados con los usuarios.
+   * `ProductControllerTest`: Verifica los endpoints REST relacionados con los productos.
+
+3. **Prueba de Integración Básica**
+   * `InventoryApplicationTests`: Verifica que el contexto de Spring se carga correctamente y que los componentes se inyectan adecuadamente.
+
+### Cómo Ejecutar las Pruebas
+
+Para ejecutar todas las pruebas unitarias del proyecto:
+
+```bash
+./mvnw test
+```
+
+Para ejecutar una clase de prueba específica:
+
+```bash
+./mvnw test -Dtest=UserServiceTest
+```
+
+Para ejecutar un método de prueba específico:
+
+```bash
+./mvnw test -Dtest=UserServiceTest#createUser_WithValidData_ShouldReturnCreatedUser
+```
+
+Las pruebas también se ejecutan automáticamente durante la fase de construcción del proyecto (`./mvnw package`).
 
