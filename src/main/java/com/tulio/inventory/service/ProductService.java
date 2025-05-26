@@ -133,6 +133,13 @@ public class ProductService {
         return convertToResponseDto(product);
     }
 
+    public List<ProductResponseDTO> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(this::convertToResponseDto)
+                .collect(Collectors.toList());
+    }
+
     // Validaciones comunes para creación y actualización de productos
     private void productValidator(String productName, Integer quantity, LocalDate entryDate) {
         if (productName == null || productName.trim().isEmpty()) {

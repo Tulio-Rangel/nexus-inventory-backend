@@ -54,4 +54,10 @@ public class ProductController {
         ProductResponseDTO product = productService.getProductById(id);
         return ResponseEntity.ok(product);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+        List<ProductResponseDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
+    }
 }
