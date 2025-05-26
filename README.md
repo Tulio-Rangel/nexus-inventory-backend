@@ -118,7 +118,6 @@ Obtiene una lista de productos. Permite filtrar por los siguientes query paramet
     *   `GET /api/products?productName=Llanta%2016`
     *   `GET /api/products?userId=1`
     *   `GET /api/products?entryDate=2024-05-20`
-    *   `GET /api/products?productName=Motor&amp;userId=1&amp;entryDate=2024-05-01`
 
 #### `PUT /products/{id}`
 Actualiza un producto existente.
